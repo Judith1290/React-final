@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-// import { postData } from '../../services/apiFetch';
-import { useNavigate, Link } from 'react-router-dom';
+import { postData } from '../services/api';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Registro = () => {
     const [usuario, setUsuario] = useState('');
     const [contraseña, setcontraseña] = useState('');
     const [correo, setcorreo] = useState('');
-    const navigate = useNavigate();
+
 
     const boton = async () => {
+
+        const navigate = useNavigate()
 
         if (!usuario.trim() || !contraseña.trim() || !correo.trim()) {
             alert('Por favor, complete todos los campos.');
@@ -16,10 +18,10 @@ const Registro = () => {
         }
 
         try {
-            const response = await postData(usuario, contraseña, correo);
+            const response = await postData(contraseña, correo);
             if (response) {
                 alert('Registro exitoso');
-                navigate('/');
+                navigate('/Login')
             } else {
                 alert('Registro fallido');
             }
@@ -31,14 +33,23 @@ const Registro = () => {
 
     return (
         <>
-            <div>
-                <h1>REGISTRO</h1>
-                <input type="text" placeholder='nombre de usuario' value={usuario} onChange={(e) => setUsuario(e.target.value)} />
-                <input type='password' name='contraseña' id='contraseña' placeholder='password' value={contraseña} onChange={(e) => setcontraseña(e.target.value)} />
-                <input type='text' placeholder='Gmail' value={correo} onChange={(e) => setcorreo(e.target.value)} />
-                <button onClick={boton}>REGISTRAR</button>
-                <button><Link to='/'>LOGIN</Link></button>
+            <div className='container'>
+                <div className="card">
+
+                    <h1 className="title">REGISTRO</h1>
+
+                    <div className="card">
+                        <input type="text" className="block text-sm font-medium" placeholder='nombre de usuario' value={usuario} onChange={(e) => setUsuario(e.target.value)} />
+                        <input type='password' className="block text-sm font-medium" name='contraseña' id='contraseña' placeholder='password' value={contraseña} onChange={(e) => setcontraseña(e.target.value)} />
+                        <input type='text' className="block text-sm font-medium" placeholder='Gmail' value={correo} onChange={(e) => setcorreo(e.target.value)} />
+
+                    </div>
+                    <button onClick={boton} className="button">REGISTRAR</button>
+                </div>
+
             </div>
+
+
         </>
     );
 
