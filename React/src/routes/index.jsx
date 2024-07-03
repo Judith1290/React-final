@@ -4,8 +4,8 @@ import Registro from '../Components/registro';
 import Login from '../Components/login';
 import Principal from '../Components/principal';
 import Contacto from '../Components/contacto';
-import Administrador from '../Components/borrar despues';
 import TodosLosProductos from '../Components/todosLosProdtuctos';
+import Administrador from '../Components/Administrador';
 
 
 
