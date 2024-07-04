@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { putData, getData, deleteData, postData} from '../services/apiProductos';
+import { putData, getData, deleteData,postData } from '../services/apiProductos';
+import Producto from './Producto';
 
 function Administrador() {
     const [modelo, setModelo] = useState('');
@@ -10,19 +11,24 @@ function Administrador() {
     const [productos, setProductos] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const [editingId, setEditingId] = useState(null);
+    // const [ntp, setNtp] = useState(0)
 
     useEffect(() => {
         fetchProductos();
+        // setNtp(+1)
     }, []);
 
     const fetchProductos = async () => {
         try {
             const data = await getData();
+            console.log(data)
             setProductos(data);
         } catch (error) {
             console.error("Error al obtener los productos:", error);
         }
     };
+
+    
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
@@ -34,11 +40,13 @@ function Administrador() {
     };
 
     const submitData = async () => {
-        const producto = { id: editingId || Date.now(), image: imageBase64, modelo, categoria, precio};
+        const producto = { image: imageBase64, modelo, categoria, precio };
 
         try {
             if (isEditing) {
+                producto.id=editingId
                 await putData(producto);
+                alert("Producto actualizado con éxito");
             } else {
                 await postData(producto);
                 alert("Producto agregado con éxito");
@@ -68,12 +76,16 @@ function Administrador() {
         setEditingId(producto.id);
     };
 
-    const handleDelete = async (id) => {
+    const remover = async (id) => {
+        console.log(id)
         try {
-            await deleteData(id);
-            fetchProductos();
+            // fetchProductos();
+           await deleteData(id);
+            setProductos(productos.filter(product => product.id !== id));
+            alert('Producto eliminado');
+            
         } catch (error) {
-            console.error("Error al eliminar el producto:", error);
+            console.error('Error al eliminar el producto:', error);
         }
     };
 
@@ -117,14 +129,11 @@ function Administrador() {
             </div>
             <div className="App">
                 {productos.map((producto) => (
-                    <div key={producto.id} className="productItem">
-                        <img src={producto.image} alt={producto.modelo} className="productImage" />
-                        <p>{producto.modelo}</p>
-                        <p>₡{producto.precio}</p>
-                        <p>{producto.categoria}</p>
+
+                    <Producto key={producto.id} producto={producto} productos={productos} setProductos={setProductos} admin={true}>
                         <button onClick={() => handleEdit(producto)}>Editar</button>
-                        <button onClick={() => handleDelete(producto.id)}>Eliminar</button>
-                    </div>
+                        <button onClick={() => remover(producto.id)}>Eliminar</button>
+                    </Producto>
                 ))}
             </div>
         </div>
@@ -132,4 +141,3 @@ function Administrador() {
 }
 
 export default Administrador;
-

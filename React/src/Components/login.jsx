@@ -15,7 +15,7 @@ const Login = () => {
             if (user) {
                 if (user.contrasena === contrasena) {
                     console.log("Usuario existe");
-                    navigate('/Principal');
+                    navigate('/');
                 } else {
                     alert("Contraseña incorrecta");
                 }

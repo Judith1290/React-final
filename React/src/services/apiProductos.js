@@ -1,7 +1,9 @@
+
+// Función para obtener datos de productos
 const apiUrl = "http://localhost:3000/producto";
 
 // Función para obtener datos de productos
-let getData = async () => {
+const getData = async () => {
     try {
         const response = await fetch(apiUrl, {
             method: "GET",
@@ -15,18 +17,18 @@ let getData = async () => {
             throw new Error(`Error en la solicitud GET: ${response.statusText}`);
         }
 
-        const data = await response.json();
-        return data;
+        return await response.json();
     } catch (error) {
         console.error("Error en la solicitud GET:", error);
         throw error;
     }
 };
 
+
 // Función para enviar datos de un nuevo producto
 let postData = async (producto) => {
     try {
-        const response = await fetch("http://localhost:3000/producto", {
+        const response = await fetch(apiUrl, {
             method: "POST",
             mode: "cors",
             headers: {
@@ -49,8 +51,9 @@ let postData = async (producto) => {
 
 // Función para eliminar un producto
 let deleteData = async (id) => {
+    console.log(id)
     try {
-        const response = await fetch(`${apiUrl}/${id}`, {
+        let response = await fetch(`http://localhost:3000/producto/${id}`, {
             method: "DELETE",
             mode: "cors",
             headers: {
@@ -62,18 +65,21 @@ let deleteData = async (id) => {
             throw new Error(`Error en la solicitud DELETE: ${response.statusText}`);
         }
 
-        const data = await response.json();
-        return data;
+       
+        console.log(`Deleted item with ID ${id} successfully`);
+        
+        return true;
     } catch (error) {
-        console.error("Error al eliminar el producto:", error);
-        throw error;
+        console.error('Error deleting item:', error);
+        
     }
 };
 
 // Función para actualizar un producto
+
 let putData = async (producto) => {
     try {
-        const response = await fetch(`${apiUrl}/${producto.id}`, {
+        const response = await fetch(`http://localhost:3000/producto/${producto.id}`, {
             method: "PUT",
             mode: "cors",
             headers: {
@@ -97,6 +103,7 @@ let putData = async (producto) => {
         console.error("Error al actualizar los datos:", error);
         throw error;
     }
+
 };
 
 export { getData, postData, deleteData, putData };
