@@ -1,6 +1,7 @@
 // // import React from 'react'
 import Carousel from 'react-bootstrap/Carousel';
-import React from 'react'
+import React from 'react';
+// import background from '../assets/img/logo1.jpg'
 
 const Bootstrap = () => {
 
@@ -8,9 +9,12 @@ const Bootstrap = () => {
         { src: "/img/imagen.jpeg", alt: "SAMSUNG" },
         { src: "/img/imagen1.jpeg", alt: "HUAWEI" },
         { src: "/img/imagen2.jpeg", alt: "IPHONE" },
+        
     ]
     return (
+   
         <div>
+           
             <Carousel data-theme="white" className='Carrusel'>
                 {images.map((imagen, index) => (
                     <Carousel.Item key={index} className='CarruselItems'>
@@ -24,7 +28,9 @@ const Bootstrap = () => {
                     </Carousel.Item>
                 ))}
             </Carousel>
+
         </div>
+    
     );
 }
 

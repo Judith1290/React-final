@@ -1,7 +1,6 @@
-
 const apiUrl = "http://localhost:3000/users";
 
-let getData = async () => {
+const getData = async () => {
     try {
         const response = await fetch(apiUrl, {
             method: "GET",
@@ -16,17 +15,24 @@ let getData = async () => {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const data = await response.json();
-        return data;
+        return await response.json();
     } catch (error) {
         console.error("Error en la solicitud GET:", error);
         throw error;
     }
 };
 
-let postData = async (contrasena, correo) => {
+const postData = async (contrasena, correo) => {
     try {
-        let response = await fetch(apiUrl, {
+        // Verificar si el correo ya existe en la base de datos
+        const users = await getData();
+        const userExists = users.find(user => user.gmail === correo);
+        if (userExists) {
+            throw new Error("Correo electrónico ya registrado");
+        }
+
+        // Si el correo no existe, proceder con la inserción del nuevo usuario
+        const response = await fetch(apiUrl, {
             method: "POST",
             mode: "cors",
             credentials: "same-origin",
@@ -34,21 +40,26 @@ let postData = async (contrasena, correo) => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                contrasena: contrasena,
+                contrasena,
                 gmail: correo
             })
         });
-        let data = await response.json();
-        return data;
-    } catch (e) {
-        console.log(e);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Error en la solicitud POST:", error);
         return null;
     }
 };
 
-let deleteData = async (id) => {
+
+const deleteData = async (id) => {
     try {
-        let response = await fetch(`${apiUrl}/${id}`, {
+        const response = await fetch(`${apiUrl}/${id}`, {
             method: "DELETE",
             mode: "cors",
             credentials: "same-origin",
@@ -56,17 +67,21 @@ let deleteData = async (id) => {
                 "Content-Type": "application/json",
             },
         });
-        let data = await response.json();
-        return data;
-    } catch (e) {
-        console.log(e);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Error en la solicitud DELETE:", error);
         return null;
     }
 };
 
-let putData = async (obj) => {
+const putData = async (obj) => {
     try {
-        let response = await fetch(`${apiUrl}/${obj.id}`, {
+        const response = await fetch(`${apiUrl}/${obj.id}`, {
             method: "PUT",
             mode: "cors",
             credentials: "same-origin",
@@ -75,10 +90,14 @@ let putData = async (obj) => {
             },
             body: JSON.stringify(obj)
         });
-        let data = await response.json();
-        return data;
-    } catch (e) {
-        console.log(e);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Error en la solicitud PUT:", error);
         return null;
     }
 };

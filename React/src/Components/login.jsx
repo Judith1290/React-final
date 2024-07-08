@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { getData } from '../services/api';
 import { useNavigate, Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const [contrasena, setContrasena] = useState('');
@@ -9,23 +10,51 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        if (!correo.includes('@')) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Correo electrónico inválido,por favor ingresar@!",
+            });
+            return;
+        }
+
         try {
             const userExists = await getData();
             const user = userExists.find((user) => user.gmail === correo);
             if (user) {
                 if (user.contrasena === contrasena) {
                     console.log("Usuario existe");
-                    navigate('/Principal');
+
+                    navigate('/TodosLosProductos');
                 } else {
-                    alert("Contraseña incorrecta");
+
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Contraseña incorrecta!",
+
+                    });
                 }
             } else {
                 console.log("Usuario no existe");
-                alert("Usuario no existe");
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Usuario no existe!",
+
+                });
+
             }
         } catch (error) {
             console.error("Error al verificar usuario:", error);
-            alert("Error al intentar iniciar sesión");
+
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Error al intentar iniciar sesión!",
+
+            });
         }
     };
 

@@ -1,15 +1,30 @@
 .header {
-  background-color: #e662e3;
+  /* background: linear-gradient(70deg, rgb(0, 0, 0),#b186f1); */
+  background-image: url('./assets/img/fondoDelNafvar.jpg');
+  background-size: cover;
+  background-position:center;
+}
+.tituloMG{
+
+font-family: Georgia, 'Times New Roman', Times, serif;
+background: -webkit-linear-gradient(#f79ae5,#b186f1);
+background: -webkit-linear-gradient(#ff85d5,#e79eff);
+-webkit-background-clip: text;
+/* -webkit-text-fill-color: transparent; */
+/* color: rgb(200, 71, 255);   */
+-webkit-text-fill-color: transparent;
+/* color: rgb(255, 71, 218);   */
+
 }
 
-.text-white {
+/* .text-white {
   color: #000000;
   text-align: center;
-}
+} */
 
-.p-4 {
+/* .p-4 {
   padding: 1rem;
-}
+} */
 
 .containerprin {
   max-width: 1200px;
@@ -49,6 +64,58 @@
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
 
 }
+
+/* https://uiverse.io/cssbuttons-io/funny-dog-69 */
+/* https://paletadecolores.online/pastel/ */
+.botton {
+  border-radius: 10%;
+  /* glow-color: rgb(217, 176, 255); */
+  --glow-spread-color:#ba9df4;
+  /* --enhanced-glow-color: #ff85d5; */
+  --btn-color: #caacf9;
+  border: .25em solid var(--glow-color);
+  padding: 1em 3em;
+  color: var(--glow-color);
+  font-size: 15px;
+  font-weight: bold;
+  background-color: var(--btn-color);
+  border-radius: 1em;
+  outline: none;
+  box-shadow: 0 0 1em .25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 .75em .25em var(--glow-color);
+  text-shadow: 0 0 .5em var(--glow-color);
+  position: relative;
+  transition: all 0.3s;
+}
+
+button::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 120%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--glow-spread-color);
+  filter: blur(2em);
+  opacity: .7;
+  transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+}
+
+/* button:hover {
+  color: var(--btn-color);
+  background-color: var(--glow-color);
+  box-shadow: 0 0 1em .25em var(--glow-color),
+         0 0 4em 2em var(--glow-spread-color),
+         inset 0 0 .75em .25em var(--glow-color);
+ }
+  */
+/* button:active {
+  box-shadow: 0 0 0.6em .25em var(--glow-color),
+         0 0 2.5em 2em var(--glow-spread-color),
+         inset 0 0 .5em .25em var(--glow-color);
+ } */
 
 .bg-white {
   background-color: #ffffff;
@@ -119,6 +186,10 @@
   color: #6c757d;
   margin-bottom: 1.5rem;
 }
+/* .letraDeRegistro{
+
+  
+} */
 
 .link {
   color: #007bff;
@@ -202,8 +273,15 @@
 
 .colorp {
   color: black;
+  font-family: 'Times New Roman';
+  font-size: 20px;
 }
 
+.letras{
+  font-family: 'Arial Narrow Bold';
+  color: #c068e8;
+  font-size: 30px;
+}
 .Carrusel {
   width: 50%;
   margin: 0 auto;
@@ -226,7 +304,7 @@
   background-color: #f5f3f3;
   padding: 2rem;
   border-radius: 0.5rem;
-  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   width: 100%;
   max-width: 40rem;
   margin: 0 auto;
@@ -245,9 +323,10 @@
 
 .centrar {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   gap: 1rem;
   margin-bottom: 1.5rem;
+  margin-left: 50px;
 }
 
 .inputContacto {
@@ -292,11 +371,11 @@ button:hover {
 
 /* css de administrador */
 
-.administrador {
+/* .administrador {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-}
+} */
 
 .App {
   display: flex;
@@ -368,11 +447,9 @@ input.inputField {
   padding: 5px;
 }
 
-/* todos los productos */
-
-/* .administrador {
+todos los productos */ .administrador {
   padding: 20px;
-} */
+}
 
 .header {
   display: flex;
@@ -406,4 +483,59 @@ input.inputField {
   width: 100px;
   height: 100px;
   object-fit: cover;
+}
+
+/* iconos */
+
+.social-media-container {
+  display: flex;
+  justify-content: center;
+  /*Centra los iconos horizontalmente
+  /* align-items: center; Alinea los iconos verticalmente */
+  justify-content: right;
+  gap: 20px;
+  /* Espacio entre los iconos */
+}
+
+.redes {
+  font-size: 2rem;
+  color: #000;
+  transition: transform 0.2s;
+  /* Transición suave al pasar el ratón por encima */
+}
+
+.redes:hover {
+  transform: scale(1.1);
+  /* Aumenta el tamaño al pasar el ratón por encima */
+}
+
+.iconos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.contenedorFo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.contenedor {
+  width: 150%;
+  max-width: 1700px;
+  padding: 30px;
+}
+
+.iconos {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.footer1 {
+
+  font-size: 30px;
+  font-family: monospace;
+
 }
