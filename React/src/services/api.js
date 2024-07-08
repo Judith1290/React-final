@@ -24,6 +24,14 @@ const getData = async () => {
 
 const postData = async (contrasena, correo) => {
     try {
+        // Verificar si el correo ya existe en la base de datos
+        const users = await getData();
+        const userExists = users.find(user => user.gmail === correo);
+        if (userExists) {
+            throw new Error("Correo electrónico ya registrado");
+        }
+
+        // Si el correo no existe, proceder con la inserción del nuevo usuario
         const response = await fetch(apiUrl, {
             method: "POST",
             mode: "cors",
@@ -47,6 +55,7 @@ const postData = async (contrasena, correo) => {
         return null;
     }
 };
+
 
 const deleteData = async (id) => {
     try {

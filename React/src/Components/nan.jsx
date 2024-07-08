@@ -5,12 +5,16 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
+import Logo from '../assets/img/Logo.png'
 
 function NavBar() {
   return (
     <Navbar expand="lg" className='header'>
+      {/* <div style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover',backgroundPosition:'center'}}></div> */}
+
       <Container fluid>
-        <Navbar.Brand href="#">MG TECHNOLOGY</Navbar.Brand>
+        <div className='tituloMG' ><Navbar.Brand href="#">MG TECHNOLOGY</Navbar.Brand></div>
+
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -18,26 +22,32 @@ function NavBar() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            
-
+            <img
+              // https://iconos8.es/icons/set/reina
+              // src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAADRElEQVR4nO2bMWsUURSFb2HeU2KrTSyN2FjpL9BfoOklNrb6D0xppQjCrAuxsJN124BE2PciWsTORvQXRFBQEbU7Msk6cXdmltndmXcfM+eD06SYd+85O3cfuYkIIYQQQgghhBBCCCGEEEIIIYQQEhHoyzn0ZIBEfow1RCLr2nV1x/xEvqInmFD6s0TWtOtrPUg/+dPmH+u5dn2tB+nIKQsgkW/a9bUe9OQ7A9AMIJHhjBE0kDYS060DfbmAnnwp/BJ+LOdb50+Mtw4kspZ+4Y7HUaqBqvlN+hPzrQPebsHb+6o1NO1PrLcOHJmPsdRCaNyfGG8dmDRfNYTG/Ynt1oFi89VCaNyfmG4dmG2+SghB/Inh1oFq5uuEoOEPvOnjpaw2eshi5gcNAW/lFLx9FOKsyYOd+QxvP8CtXIrQfIQIASNzEd6+hzcHTZ5TfLi3nw6bdPYXnL0dofloMgS4kzfh7c+xBx+bOGN2Ad6+m2zUPKtzJKEe82sP4WjkmCdTz9+v6/nVC3HmVUGjtYwk1Gt+bSEcj5zpZ5vdZZ89fzHeDgsbXXIkoRnzlw5hYuTke34hoYE3T2c3O/9IQrPmLxRCyciZ7nVbQgNnH1ZotvJIQhjz5wqhfOTk3oAHEprKhlUYSQhrfqUQZo6cXI/mnoQG3tydr+HikQQd80tDqDZycgHcCWZ8VujI3lqg4YmRBF3zcyFUHjl5bYYPwJuNBRtOX+vNSMzHWFvjmqqNnJzMRvgA9uy1CIxDJLoaPoDRiSsRNI4o9HrlcvgAnFlXb9xHopEN/wcBeLN6Vr1xH4n2Tp8JH8COWPXGfSTaERs8gMMQvP2j3rxX128V8/9byqDbMgd6AfxbynRZTmEZU76U6aT29QIoXsp0TGZXL4CypUyX5BSWMdWXMl2Q2dYLoNpSpt1yCsuYLIC4fqMJnQAUljGLL2VaKKewjFlyKdM2beoF4MyNCAyA8htwXS8ALmWgsozJAuBSBirLmCwALmWgsozJAuBSBirLmCwALmWgtozJQij/B7VOSLTRNgAMQN8E8A3QNwJK0p5AHEHaaH8CwTdA3wRwBOkbASVpTyBCCCGEEEIIIYQQQgghhBBCCCESLX8BN5V2Un1544AAAAAASUVORK5CYII="
+              src= {Logo}
+              alt="Logo"
+              className="navbar-logo"
+              style={{ width: '40px', height: '40px' }} // Ajusta el tamaño de la imagen según tus necesidades
+            />
             <NavDropdown title="Link" id="navbarScrollingDropdown">
               <NavDropdown.Item as={Link} to="/Contacto">CONTACTO</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/Administrador">ADMINISTRADOR</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
+              {/* <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item> */}
             </NavDropdown>
-            <Nav.Link href="#" disabled>Link</Nav.Link>
+            {/* <Nav.Link href="#" disabled>Link</Nav.Link> */}
           </Nav>
           <Form className="d-flex">
-            <Form.Control
+            {/* <Form.Control
               type="search"
               placeholder="Search"
               className="me-2"
               aria-label="Search"
-            />
-            <button variant="outline-success"><Link to='/TodosLosProductos'>INICIO</Link></button>
-            <button variant="outline-success"><Link to='/Login'>REGISTRO</Link></button>
+            /> */}
+            {/* <button className='botton' variant="outline-success"><Link to='/TodosLosProductos'>INICIO</Link></button> */}
+            <button className='botton' variant="outline-success"><Link to='/Login'>REGISTRO</Link></button>
 
 
           </Form>

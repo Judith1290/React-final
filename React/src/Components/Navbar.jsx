@@ -8,10 +8,12 @@ import { Link } from 'react-router-dom';
 
 function NavbarPri({ onSearch, onSelectCategory }) {
     const handleSearchChange = (event) => {
+        console.log(handleSearchChange)
         onSearch(event.target.value);
     };
 
     const handleSelectCategory = (category) => {
+        console.log(handleSelectCategory)
         onSelectCategory(category);
     };
 

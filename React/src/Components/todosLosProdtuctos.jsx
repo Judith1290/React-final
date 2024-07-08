@@ -11,7 +11,7 @@ function TodosLosProductos() {
         fetchProductos();
         const interval = setInterval(fetchProductos, 5000); // Actualiza los productos cada 5 segundos
 
-        return () => clearInterval(interval); 
+        return () => clearInterval(interval);
     }, []);
 
     const fetchProductos = async () => {
@@ -32,10 +32,11 @@ function TodosLosProductos() {
     };
 
     const filteredProductos = productos.filter((producto) => {
-        return (
-            producto.modelo.toLowerCase().includes(searchTerm.toLowerCase()) &&
-            (!filterCategory || producto.categoria === filterCategory)
-        );
+        // Filtrar por categoría si está seleccionada
+        const matchesCategory = filterCategory ? producto.categoria === filterCategory : true;
+        // Filtrar por término de búsqueda si está presente
+        const matchesSearch = searchTerm ? producto.modelo.toLowerCase().includes(searchTerm.toLowerCase()) : true;
+        return matchesCategory && matchesSearch;
     });
 
     return (
@@ -49,6 +50,7 @@ function TodosLosProductos() {
                         </div>
                         <p>{producto.modelo}</p>
                         <p>₡{producto.precio}</p>
+                        <p>{producto.categoria}</p>
                     </div>
                 ))}
             </div>

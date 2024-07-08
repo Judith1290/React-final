@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { putData, getData, deleteData,postData } from '../services/apiProductos';
+import { putData, getData, deleteData, postData } from '../services/apiProductos';
 import Producto from './Producto';
+import Swal from 'sweetalert2';
 
 function Administrador() {
     const [modelo, setModelo] = useState('');
@@ -11,11 +12,9 @@ function Administrador() {
     const [productos, setProductos] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const [editingId, setEditingId] = useState(null);
-    // const [ntp, setNtp] = useState(0)
 
     useEffect(() => {
         fetchProductos();
-        // setNtp(+1)
     }, []);
 
     const fetchProductos = async () => {
@@ -28,8 +27,6 @@ function Administrador() {
         }
     };
 
-    
-
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         const reader = new FileReader();
@@ -40,16 +37,32 @@ function Administrador() {
     };
 
     const submitData = async () => {
-        const producto = { image: imageBase64, modelo, categoria, precio };
+        const producto = { image: imageBase64, categoria, precio, modelo };
 
+        if (!imageBase64.trim() || !categoria.trim() || !precio.trim()) {
+        
+            Swal.fire("Por favor, complete todos los campos!");
+            return;
+        }
         try {
             if (isEditing) {
-                producto.id=editingId
+                producto.id = editingId;
                 await putData(producto);
-                alert("Producto actualizado con éxito");
+                Swal.fire({
+                    title: "Good job!",
+                    text: "Producto actualizado con éxito!",
+                    icon: "success"
+                  });
             } else {
                 await postData(producto);
-                alert("Producto agregado con éxito");
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Producto agregado con éxito",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                
             }
             fetchProductos();
             clearForm();
@@ -77,15 +90,24 @@ function Administrador() {
     };
 
     const remover = async (id) => {
-        console.log(id)
-        try {
-            // fetchProductos();
-           await deleteData(id);
-            setProductos(productos.filter(product => product.id !== id));
-            alert('Producto eliminado');
-            
-        } catch (error) {
-            console.error('Error al eliminar el producto:', error);
+        const result = await Swal.fire({
+            title: "Advertencia",
+            text: "¿Está seguro que desea eliminar el producto?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Sí, eliminar",
+            cancelButtonText: "Cancelar",
+        });
+
+        if (result.isConfirmed) {
+            try {
+                await deleteData(id);
+                setProductos(productos.filter(product => product.id !== id));
+                Swal.fire("Eliminado", "Producto eliminado con éxito", "success");
+            } catch (error) {
+                console.error('Error al eliminar el producto:', error);
+                Swal.fire("Error", "Hubo un problema al eliminar el producto", "error");
+            }
         }
     };
 
@@ -118,7 +140,7 @@ function Administrador() {
                             <option className='option' value="Audifono">Audifono</option>
                             <option className='option' value="Celulares">Celulares</option>
                         </select>
-                        <input className='inputField' type="text" placeholder='Precio en CR' value={precio} onChange={(e) => setPrecio(e.target.value)} />
+                        <input className='inputField' type='number' placeholder='Precio en CR' value={precio} onChange={(e) => setPrecio(e.target.value)} />
                         <input onClick={submitData} className='submitButton' type="button" value={isEditing ? "Actualizar" : "Agregar"} />
                         {isEditing && (
                             <input onClick={clearForm} className='closeButton' type="button" value="Cancelar" />
@@ -129,7 +151,6 @@ function Administrador() {
             </div>
             <div className="App">
                 {productos.map((producto) => (
-
                     <Producto key={producto.id} producto={producto} productos={productos} setProductos={setProductos} admin={true}>
                         <button onClick={() => handleEdit(producto)}>Editar</button>
                         <button onClick={() => remover(producto.id)}>Eliminar</button>

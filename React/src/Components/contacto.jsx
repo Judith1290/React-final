@@ -4,8 +4,8 @@ const Contacto = () => {
   
   return (
     
-    <div className="todo">
-    <div className="contenedor">
+    <div className="">
+    <div className="">
       <h2 className="titulo">Get In Touch</h2>
       <form>
         <div className="centrar">
