@@ -4,6 +4,7 @@ import { putData, getData, deleteData, postData } from '../services/apiProductos
 import Producto from './Producto';
 import Swal from 'sweetalert2';
 
+// Definición de estados para manejar los datos del formulario y los productos.
 function Administrador() {
     const [modelo, setModelo] = useState('');
     const [precio, setPrecio] = useState('');
@@ -13,20 +14,21 @@ function Administrador() {
     const [isEditing, setIsEditing] = useState(false);
     const [editingId, setEditingId] = useState(null);
 
+    // useEffect para cargar los productos cuando el componente se agrega.
     useEffect(() => {
         fetchProductos();
     }, []);
 
+    // Función para obtener los productos desde la API.
     const fetchProductos = async () => {
         try {
             const data = await getData();
-            console.log(data)
             setProductos(data);
         } catch (error) {
             console.error("Error al obtener los productos:", error);
         }
     };
-
+    // Maneja la conversión de una imagen a base64.
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         const reader = new FileReader();
@@ -35,12 +37,12 @@ function Administrador() {
         };
         reader.readAsDataURL(file);
     };
-
+    // Envía los datos del formulario a la API, ya sea para crear o actualizar un producto.
     const submitData = async () => {
         const producto = { image: imageBase64, categoria, precio, modelo };
 
         if (!imageBase64.trim() || !categoria.trim() || !precio.trim()) {
-        
+
             Swal.fire("Por favor, complete todos los campos!");
             return;
         }
@@ -52,7 +54,7 @@ function Administrador() {
                     title: "Good job!",
                     text: "Producto actualizado con éxito!",
                     icon: "success"
-                  });
+                });
             } else {
                 await postData(producto);
                 Swal.fire({
@@ -61,8 +63,8 @@ function Administrador() {
                     title: "Producto agregado con éxito",
                     showConfirmButton: false,
                     timer: 1500
-                  });
-                
+                });
+
             }
             fetchProductos();
             clearForm();
@@ -88,7 +90,7 @@ function Administrador() {
         setIsEditing(true);
         setEditingId(producto.id);
     };
-
+    // Elimina un producto
     const remover = async (id) => {
         const result = await Swal.fire({
             title: "Advertencia",
@@ -122,6 +124,7 @@ function Administrador() {
                         )}
                     </div>
                     <div>
+
                         <input type="file" onChange={handleImageChange} />
                         <select className='inputField' value={modelo} onChange={(e) => setModelo(e.target.value)}>
                             <option className='option' value="">Selecciona el modelo</option>

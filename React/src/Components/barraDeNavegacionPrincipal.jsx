@@ -28,10 +28,10 @@ function NavBar() {
               src= {Logo}
               alt="Logo"
               className="navbar-logo"
-              style={{ width: '40px', height: '40px' }} // Ajusta el tamaño de la imagen según tus necesidades
+              style={{ width: '75px', height: '70px' }} // Ajusta el tamaño de la imagen según tus necesidades
             />
             <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item as={Link} to="/Contacto">CONTACTO</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/Informacion ">CONTACTO</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/Administrador">ADMINISTRADOR</NavDropdown.Item>
               <NavDropdown.Divider />
