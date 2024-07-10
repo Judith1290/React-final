@@ -18,15 +18,17 @@ const Login = () => {
             });
             return;
         }
-
         try {
             const userExists = await getData();
             const user = userExists.find((user) => user.gmail === correo);
             if (user) {
                 if (user.contrasena === contrasena) {
                     console.log("Usuario existe");
-
-                    navigate('/TodosLosProductos');
+                    if ("admin" === user.tipe) {
+                        navigate('/Administrador');
+                    } else {
+                        navigate('/TodosLosProductos');
+                    }
                 } else {
 
                     Swal.fire({

@@ -10,7 +10,6 @@ import Logo from '../assets/img/Logo.png'
 function NavBar() {
   return (
     <Navbar expand="lg" className='header'>
-      {/* <div style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover',backgroundPosition:'center'}}></div> */}
 
       <Container fluid>
         <div className='tituloMG' ><Navbar.Brand href="#">MG TECHNOLOGY</Navbar.Brand></div>
@@ -33,11 +32,11 @@ function NavBar() {
             <NavDropdown title="Link" id="navbarScrollingDropdown">
               <NavDropdown.Item as={Link} to="/Informacion ">CONTACTO</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/Administrador">ADMINISTRADOR</NavDropdown.Item>
+              {/* <NavDropdown.Item href="/Administrador">ADMINISTRADOR</NavDropdown.Item> */}
               <NavDropdown.Divider />
-              {/* <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item> */}
+             
             </NavDropdown>
-            {/* <Nav.Link href="#" disabled>Link</Nav.Link> */}
+         
           </Nav>
           <Form className="d-flex">
             {/* <Form.Control

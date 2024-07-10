@@ -31,14 +31,10 @@
       "gmail": "mari"
     },
     {
-      "id": "8684",
-      "contrasena": "mmm",
-      "gmail": "marilyn@gmail.com"
-    },
-    {
       "id": "5d6b",
       "contrasena": "mmm",
-      "gmail": "marilyngmail.com"
+      "gmail": "marilyn@gmail.com",
+      "tipe": "admin"
     },
     {
       "id": "431d",
@@ -49,6 +45,12 @@
       "id": "e536",
       "contrasena": "123",
       "gmail": "ana@gmail.com"
+    },
+    {
+      "id": "c03d",
+      "contrasena": "12345",
+      "gmail": "hola@gmail.com",
+      "tipe": "user"
     }
   ],
   "producto": [
