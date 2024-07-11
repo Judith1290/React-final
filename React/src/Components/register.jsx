@@ -23,7 +23,7 @@ const Registro = () => {
             });
             return;
         }
-            try {
+        try {
             const response = await postData(contraseña, correo);
             if (response) {
 
