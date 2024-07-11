@@ -11,8 +11,8 @@ function Administrador() {
     const [categoria, setCategoria] = useState('');
     const [imageBase64, setImageBase64] = useState('');
     const [productos, setProductos] = useState([]);
-    const [isEditing, setIsEditing] = useState(false);
-    const [editingId, setEditingId] = useState(null);
+    const [isEditing, setIsEditing] = useState(false); /*el formulario está en modo de creación, llama a postData*/
+    const [editingId, setEditingId] = useState(null); /*el formulario está en modo de edición,llama a putData*/
 
     // useEffect para cargar los productos cuando el componente se agrega.
     useEffect(() => {
@@ -20,6 +20,7 @@ function Administrador() {
     }, []);
 
     // Función para obtener los productos desde la API.
+    //siempre actualizada con los datos más recientes de la API,
     const fetchProductos = async () => {
         try {
             const data = await getData();
@@ -73,6 +74,7 @@ function Administrador() {
         }
     };
 
+    //se utiliza para limpiar el formulario y restablecer los estados relacionados con la edición.
     const clearForm = () => {
         setModelo('');
         setPrecio('');
@@ -81,7 +83,8 @@ function Administrador() {
         setIsEditing(false);
         setEditingId(null);
     };
-
+/*se utiliza para rellenar el formulario con los datos de un producto existente,
+     permitiendo que el usuario edite los detalles de ese producto.*/
     const handleEdit = (producto) => {
         setModelo(producto.modelo);
         setPrecio(producto.precio);

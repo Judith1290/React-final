@@ -11,8 +11,8 @@ function Inicio() {
                  <div><Carrusel /></div>
 
             <div className="bg-white text-center p-8">
-                <h3 className='text-red-600 text-xl font-bold mt-4'>Registrate para poder ver mas de nuestro productos </h3>
-                <h3 className="text-red-600 text-xl font-bold mt-4">¡ENTRE MÁS COMPRES, MÁS GANAS!</h3>
+                <h3 className='titulo'>Registrate para poder ver mas de nuestro productos </h3>
+                <h3 className="titulo">¡ENTRE MÁS COMPRES, MÁS GANAS!</h3>
                  <p className="text-red-600 text-sm mt-2">Aplican restricciones</p>
             </div>
             </>

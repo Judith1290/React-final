@@ -65,13 +65,13 @@ let deleteData = async (id) => {
             throw new Error(`Error en la solicitud DELETE: ${response.statusText}`);
         }
 
-       
+
         console.log(`Deleted item with ID ${id} successfully`);
-        
+
         return true;
     } catch (error) {
         console.error('Error deleting item:', error);
-        
+
     }
 };
 

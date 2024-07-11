@@ -1,19 +1,19 @@
 
-const Producto = ({producto, children}) => {
+const Producto = ({ producto, children }) => {
 
- return (
+  return (
     <div key={producto.id} className="productItem">
-    <div className='imageContainer'>
+      <div className='imageContainer'>
         <img src={producto.image} alt={producto.modelo} className="productImage" />
+      </div>
+      <p>{producto.modelo}</p>
+      <p>₡{producto.precio}</p>
+      <p>{producto.categoria}</p>
+      {children}
+
+
+
     </div>
-    <p>{producto.modelo}</p>
-    <p>₡{producto.precio}</p>
-    <p>{producto.categoria}</p>
-    {children}
-     
-   
-    
-</div>
   );
 }
 
