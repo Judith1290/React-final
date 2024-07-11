@@ -9,10 +9,8 @@ const Bootstrap = () => {
         { src: "/img/imagen.jpeg", alt: "SAMSUNG" },
         { src: "/img/imagen1.jpeg", alt: "HUAWEI" },
         { src: "/img/imagen2.jpeg", alt: "IPHONE" },
-        
-    ]
+         ]
     return (
-   
         <div>
            
             <Carousel data-theme="white" className='Carrusel'>

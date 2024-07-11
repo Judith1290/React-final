@@ -41,7 +41,8 @@ const postData = async (contrasena, correo) => {
             },
             body: JSON.stringify({
                 contrasena,
-                gmail: correo
+                gmail: correo,
+                tipe: "user"
             })
         });
 

@@ -1,11 +1,10 @@
 import React from 'react'
 
 const Contacto = () => {
-  
   return (
-    
+
     <div className="">
-    <div className="">
+
       <h2 className="titulo">Get In Touch</h2>
       <form>
         <div className="centrar">
@@ -25,8 +24,8 @@ const Contacto = () => {
         <button type="submit">Submit</button>
       </form>
       <p className="gracias">Thanks for submitting!</p>
-          </div>
-        </div>
-      )
-    }
+    </div>
+
+  )
+}
 export default Contacto

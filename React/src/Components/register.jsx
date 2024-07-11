@@ -23,7 +23,6 @@ const Registro = () => {
             });
             return;
         }
-
         try {
             const response = await postData(contraseña, correo);
             if (response) {
@@ -62,7 +61,8 @@ const Registro = () => {
                 <div className="card">
                     <h1 className="title">REGISTRO</h1>
 
-                    <div className="card">
+                    <div className="mb-4">
+                        <label htmlFor="correo" className="block text-sm font-medium" ></label>
                         <input
                             type="text"
                             className="block text-sm font-medium"
@@ -70,6 +70,9 @@ const Registro = () => {
                             value={usuario}
                             onChange={(e) => setUsuario(e.target.value)}
                         />
+                    </div>
+                    <div className="mb-4">
+                        <label htmlFor="correo" className="block text-sm font-medium"></label>
                         <input
                             type='password'
                             className="block text-sm font-medium"
@@ -79,6 +82,10 @@ const Registro = () => {
                             value={contraseña}
                             onChange={(e) => setContraseña(e.target.value)}
                         />
+                    </div>
+
+                    <div className="mb-4">
+                        <label htmlFor="correo" className="block text-sm font-medium"></label>
                         <input
                             type='text'
                             className="block text-sm font-medium"

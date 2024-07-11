@@ -16,9 +16,11 @@ const Footer = () => {
                         Nuestra misión en MG Technology es proporcionar productos de alta calidad que impulsen el crecimiento y
                         la eficiencia de nuestros clientes. Nos comprometemos a ofrecer productos y servicios excepcionales.
                     </Card.Text>
-
+                    <Card.Text >
+                         Estamos ubicado en puntarenas centro, frente a grupo mutual a un costado de la farmacia Don Gerardo
+                </Card.Text>
                 </Card.Body  >
-                <p></p>
+                
                 <p className='titulo'>siguenos en nuestras redes sociales</p>
                 <div className='iconos'>
                     
